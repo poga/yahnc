@@ -1,4 +1,5 @@
-host = "http://localhost:3000"
+#host = "http://localhost:3000"
+host = "http://106.187.52.200:3000"
 $ \#submit-form .toggle!
 
 linksRef = new PgBase "#host/links"
@@ -34,7 +35,8 @@ window.INCR_VOTE = (link_id, cb) ->
 
 linksRef.on \value, ->
   $("\#link-list").html("")
-  for link in it.reverse!
+  it.sort (x,y) -> y.rating - x.rating
+  for link in it
     $(\#link-list).append LINK2ITEM(link)
   console.log \value, it
 
