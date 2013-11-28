@@ -1,6 +1,7 @@
+host = "http://106.187.52.200:3000"
 $ \#submit-form .toggle!
 
-linksRef = new PgBase "http://localhost:3000/links"
+linksRef = new PgBase "#host/links"
 
 window.LINK2ITEM = (link) ->
   """
@@ -18,7 +19,7 @@ window.LINK2ITEM = (link) ->
       """
 
 window.GET_COMMENT = (link_id, cb) ->
-  socketRef = new PgBase "http://localhost:3000/comments"
+  socketRef = new PgBase "#host/comments"
   console.log socketRef
   socketRef.need-connection!
   <- socketRef.socket.emit "GET:comments", { q: "{\"link_id\":#link_id}" }
@@ -51,7 +52,7 @@ $ \#submit-button .on \click, ->
 
 $ \body .on \keypress, \#comment-input ->
   if it.keyCode == 13
-    commentRef = new PgBase "http://localhost:3000/comments"
+    commentRef = new PgBase "#host/comments"
     link_id = $(it.target).data(\link-id)
     link_body = $(it.target).val!
     new_comment =
@@ -68,7 +69,7 @@ $ \body .on \keypress, \#comment-input ->
 $ \body .on \click, \.link-click ->
   id = $(it.target).data("id")
   console.log id
-  postRef = new PgBase "http://localhost:3000/links/#id"
+  postRef = new PgBase "#host/links/#id"
   <- postRef.once \value
   console.log it
   $(\#main).html """
@@ -89,7 +90,7 @@ $ \body .on \click, \.link-click ->
   """
   <- GET_COMMENT id
   console.log it
-  for c in it.entries
+  for c in it.entries.reverse!
     $(\#comment-sect).append """
       <div class="ui secondary segment">
         </h3>
