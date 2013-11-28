@@ -1,3 +1,5 @@
+$ \#submit-form .toggle!
+
 linksRef = new PgBase "http://localhost:3000/links"
 
 window.LINK2ITEM = (link) ->
@@ -28,16 +30,24 @@ linksRef.once \value, ->
   console.log \value, it
 
 linksRef.on \child_added, ->
-  $(\#link-list).prepend LINK2ITEM(link)
+  $(\#link-list).prepend LINK2ITEM(it)
   console.log \added, it
 
 <- $
+$ \#show-submit .on \click, ->
+  $ \#submit-form .toggle!
+
+$ \#go-to-hot .on \click, ->
+  $ \#submit-form .hide!
+
 $ \#submit-button .on \click, ->
   link =
     title: $(\#submit-title).val!,
     url: $(\#submit-link).val!,
     rating: 0
   linksRef.push link
+  $(\#submit-title).val ""
+  $(\#submit-link).val ""
 
 $ \body .on \keypress, \#comment-input ->
   if it.keyCode == 13

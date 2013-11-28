@@ -6,10 +6,31 @@
 
 <nav class="ui menu">
   <h3 class="header item">YAHNC</h3>
-  <a class="item"><i class="red fire icon"></i>hot</a>
-  <a class="item"><i class="green leaf icon"></i>new</a>
-  <a class="item">submit</a>
+  <a class="item" id="go-to-hot"><i class="red fire icon"></i>hot</a>
+  <a class="item" id="show-submit">submit</a>
 </nav>
+
+<!-- submit form -->
+<div id="submit-form">
+  <p>
+  <div class="ui left icon input fluid focus">
+    <input id="submit-title" type="text" placeholder="Title">
+    <i class="bookmark icon"></i>
+  </div>
+  </p>
+  <p>
+  <div class="ui left icon input fluid focus">
+    <input id="submit-link" type="text" placeholder="Link">
+    <i class="code icon"></i>
+  </div>
+  </p>
+
+  <div class="ui secondary button" id="submit-button">
+    Submit
+  </div>
+</div>
+
+<script src="index.js"></script>
 
 <div class="ui divided grid">
   <div class="five wide column">
@@ -19,23 +40,4 @@
   <div class="ten wide column" id="main">
   </div>
 </div>
-
-<!-- markup for submit form -->
-<p>
-<div class="ui left icon input fluid focus">
-  <input id="submit-title" type="text" placeholder="Title">
-  <i class="bookmark icon"></i>
-</div>
-</p>
-<p>
-<div class="ui left icon input fluid focus">
-  <input id="submit-link" type="text" placeholder="Link">
-  <i class="code icon"></i>
-</div>
-</p>
-
-<div class="ui secondary button" id="submit-button">
-  Submit
-</div>
-<script src="index.js"></script>
 
