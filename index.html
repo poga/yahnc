@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="moment.min.js"></script>
+<script src="pgbase.js"></script>
+<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.9.3/css/semantic.min.css">
+
+<nav class="ui menu">
+  <h3 class="header item">YAHNC</h3>
+  <a class="item"><i class="red fire icon"></i>hot</a>
+  <a class="item"><i class="green leaf icon"></i>new</a>
+  <a class="item">submit</a>
+</nav>
+
+<div class="ui divided grid">
+  <div class="five wide column">
+    <div class="ui ordered divided relaxed list" id="link-list">
+    </div>
+  </div>
+  <div class="ten wide column" id="main">
+  </div>
+</div>
+
+<!-- markup for submit form -->
+<p>
+<div class="ui left icon input fluid focus">
+  <input id="submit-title" type="text" placeholder="Title">
+  <i class="bookmark icon"></i>
+</div>
+</p>
+<p>
+<div class="ui left icon input fluid focus">
+  <input id="submit-link" type="text" placeholder="Link">
+  <i class="code icon"></i>
+</div>
+</p>
+
+<div class="ui secondary button" id="submit-button">
+  Submit
+</div>
+<script src="index.js"></script>
+
