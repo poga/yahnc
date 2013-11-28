@@ -1,4 +1,4 @@
-host = "http://106.187.52.200:3000"
+host = "http://localhost:3000"
 $ \#submit-form .toggle!
 
 linksRef = new PgBase "#host/links"
@@ -10,7 +10,7 @@ window.LINK2ITEM = (link) ->
         <div class="content">
           <a class="header link-click" data-id="#{link._id}">#{link.title}</a>
           <div class="description">
-            <i class="red arrow up icon"></i>
+            <i class="red arrow up icon" class="up" data-id="#{link._id}"></i>
             #{link.rating}
             #{link.url}
             </div>
@@ -20,12 +20,20 @@ window.LINK2ITEM = (link) ->
 
 window.GET_COMMENT = (link_id, cb) ->
   socketRef = new PgBase "#host/comments"
-  console.log socketRef
   socketRef.need-connection!
   <- socketRef.socket.emit "GET:comments", { q: "{\"link_id\":#link_id}" }
   cb it
 
-linksRef.once \value, ->
+window.INCR_VOTE = (link_id, cb) ->
+  linkRef = new PgBase "#host/links/#link_id"
+  console.log linkRef
+  <- linkRef.once \value
+  console.log it
+  <- linkRef.update { rating: it.rating + 1 }
+  console.log \done, it
+
+linksRef.on \value, ->
+  $("\#link-list").html("")
   for link in it.reverse!
     $(\#link-list).append LINK2ITEM(link)
   console.log \value, it
@@ -49,6 +57,11 @@ $ \#submit-button .on \click, ->
   linksRef.push link
   $(\#submit-title).val ""
   $(\#submit-link).val ""
+
+$ \body .on \click, \.up ->
+  console.log $(it.target).data(\id)
+  <- INCR_VOTE $(it.target).data(\id)
+  console.log \inc-complete
 
 $ \body .on \keypress, \#comment-input ->
   if it.keyCode == 13
@@ -75,7 +88,7 @@ $ \body .on \click, \.link-click ->
   $(\#main).html """
     <h2 class="ui header">
     #{it.title}
-    <div class="sub header"><i class="red arrow up icon"></i>
+    <div class="sub header"><i class="arrow up icon"></i>
             #{it.rating}
             #{it.url}
                 </div>
