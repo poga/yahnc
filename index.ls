@@ -1,5 +1,5 @@
-#host = "http://localhost:3000"
-host = "http://106.187.52.200:3000"
+host = "http://localhost:3000"
+
 $ \#submit-form .toggle!
 
 linksRef = new PgBase "#host/links"

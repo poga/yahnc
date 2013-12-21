@@ -1,5 +1,14 @@
 ## Server
 
+### Download latest pgrest-websocket
+
+```
+git clone https://github.com/pgrest/pgrest-websocket
+cd pgrest-websocket
+npm i
+npm run prepublish
+```
+
 ### create db
 
 ```
@@ -23,11 +32,11 @@ CREATE TABLE comments (
 ### run
 
 ```
-  pgrest --db ### --websocket
+  ./bin/cmd.js --db YOUR_DB_NAME --websocket
 ```
 
 ## Client
 
-fix host if you're not running on localhost
+fix host in index.ls and run prepublish again if you're not running on localhost
 
-open index.html
+open index.html with browser
