@@ -37,6 +37,6 @@ CREATE TABLE comments (
 
 ## Client
 
-fix host in index.ls and run prepublish again if you're not running on localhost
+fix host in index.ls and compile it with lsc if you're not running on localhost
 
 open index.html with browser
